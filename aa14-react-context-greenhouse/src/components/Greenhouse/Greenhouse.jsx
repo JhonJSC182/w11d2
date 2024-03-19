@@ -5,29 +5,15 @@ import { useTheme } from '../../context/ThemeContext';
 
 import LightSwitch from './LightSwitch';
 import ClimateStats from './ClimateStats';
-import { useState } from 'react';
 
 function Greenhouse() {
-  const [selectedTheme, setTheme] = useState();
   const { themeName, setThemeName } = useTheme();
-
-  const handleClick = e => {
-    e.stopPropagation();
- 
-    if (themeName === 'day') {
-      setThemeName('night');
-      e.target.src = nightImage;
-    } else {
-      setThemeName('day')
-      e.target.src = dayImage;
-    };
-  };
 
   return (
     <section>
-      <div onClick={handleClick}>
+      <div >
         <img  className='greenhouse-img'
-              src={dayImage}
+              src={themeName === 'day' ? dayImage : nightImage}
               alt='greenhouse' 
         />
       </div>
